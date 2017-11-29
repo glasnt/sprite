@@ -10,6 +10,15 @@ im = im.transpose(Image.FLIP_TOP_BOTTOM).transpose(Image.ROTATE_270)
 
 print("<div><code>")
 histo = im.getcolors()
+
+
+# if sampling fails, drop count https://stackoverflow.com/questions/1065945/how-to-reduce-color-palette-with-pil
+# using 32 here as POC
+if not histo:
+    im = im.convert('P', palette=Image.ADAPTIVE, colors=32)
+    im = im.convert('RGB')
+
+histo = im.getcolors()
 print(histo)
 print(len(histo))
 print("</code></div><br><hr><br>")
@@ -30,9 +39,6 @@ chart = {}
 # TODO - monospace friendly stars
 #stars = "abcdefghijklmnopqrstuvwxyz"
 stars = "████████████████████████████████████████████████████"
-
-
-
 
 if len(sys.argv) == 3:
     step = int(sys.argv[2])
