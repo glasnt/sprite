@@ -16,5 +16,6 @@ for non-1:1 images, optional parameter 'step' for how the 'step' size (e.g. in `
 python pillow-test.py 128.png 8
 ```
 
+View output.html as actual html: http://htmlpreview.github.io/?https://github.com/glasnt/sprite/blob/master/output.html
 
 firebros.gif created by Paul Robertson. http://probertson.tumblr.com/post/6547965065/fire-bros
