@@ -6,12 +6,13 @@ from PIL import Image
 
 im = Image.open(sys.argv[1])
 im = im.convert('RGB')
+im = im.transpose(Image.FLIP_TOP_BOTTOM).transpose(Image.ROTATE_270)
 
-print("<code>")
+print("<div><code>")
 histo = im.getcolors()
 print(histo)
 print(len(histo))
-print("<br><br>")
+print("</code></div><br><hr><br>")
 
 def rgb2hex(pix):
     if len(pix) == 4:
@@ -27,7 +28,10 @@ chart = {}
 
 #stars = "▷◼︎✤✷✽❤︎✰❐❄︎➤⬆︎⬇︎♠︎♣︎♥︎♦︎♞♟✝︎☘︎"
 # TODO - monospace friendly stars
-stars = "abcdefghijklmnopqrstuvwxyz"
+#stars = "abcdefghijklmnopqrstuvwxyz"
+stars = "████████████████████████████████████████████████████"
+
+
 
 
 if len(sys.argv) == 3:
@@ -40,12 +44,11 @@ for idx, x in enumerate(histo):
     chart[h] = stars[idx]
 
 
-count = 0
+print("<div style='line-height: 0.7'><code>")
 for x in range(0, im.width, step):
     for y in range(0, im.height, step):
-        count += 1
         p = rgb2hex(im.getpixel((x,y))) 
         print("<span style='color: {}'>{}</span>".format(p, chart[p]), end="")
-    print("")
-
-print("\n<br>Pixel count: {}".format(count))
+    print("<br>")
+    #print("")
+print("</div>")
