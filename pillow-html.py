@@ -7,9 +7,11 @@ from PIL import Image
 im = Image.open(sys.argv[1])
 im = im.convert('RGB')
 
+print("<code>")
 histo = im.getcolors()
 print(histo)
 print(len(histo))
+print("<br><br>")
 
 def rgb2hex(pix):
     if len(pix) == 4:
@@ -22,9 +24,9 @@ def rgb2hex(pix):
 #import pdb; pdb.set_trace()
 histo = im.getcolors()
 chart = {}
-#TODO - histo to 'chart'
 
 #stars = "▷◼︎✤✷✽❤︎✰❐❄︎➤⬆︎⬇︎♠︎♣︎♥︎♦︎♞♟✝︎☘︎"
+# TODO - monospace friendly stars
 stars = "abcdefghijklmnopqrstuvwxyz"
 
 
@@ -39,7 +41,6 @@ for idx, x in enumerate(histo):
 
 
 count = 0
-print("<code>")
 for x in range(0, im.width, step):
     for y in range(0, im.height, step):
         count += 1
@@ -47,4 +48,4 @@ for x in range(0, im.width, step):
         print("<span style='color: {}'>{}</span>".format(p, chart[p]), end="")
     print("")
 
-print("\nPixel count: {}".format(count))
+print("\n<br>Pixel count: {}".format(count))
